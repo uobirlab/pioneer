@@ -1,0 +1,16 @@
+<package>
+  <description brief="pioneer">
+
+     pioneer
+
+  </description>
+  <author>cogx</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/pioneer</url>
+  <depend package="p2os_driver"/>
+  <depend package="hokuyo_node"/>
+
+</package>
+
+
