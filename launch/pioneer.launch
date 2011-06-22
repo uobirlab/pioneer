@@ -5,6 +5,7 @@
 
   <node pkg="p2os_driver" type="p2os" name="odom_node" output="screen">
     <param name="port" value="/dev/ttyUSB0" />
+    <param name="pulse" value="1" />
   </node>
 
   <node pkg="tf" type="static_transform_publisher" name="stp_laser" output="screen" args="0.145 0.0 0.05 0 0 0 -1 base_link laser 100">
