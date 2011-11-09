@@ -1,14 +1,19 @@
 <launch>
-  <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo" output="screen">
-    <param name="port" value="/dev/ttyACM0" />
-  </node>
-
+  <!-- p2os driver communicates with the hardware -->
   <node pkg="p2os_driver" type="p2os" name="odom_node" output="screen">
     <param name="port" value="/dev/ttyUSB0" />
     <param name="pulse" value="1" />
   </node>
 
+  <!-- Start the laser -->
+  <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo" output="screen">
+    <param name="port" value="/dev/ttyACM0" />
+  </node>
+
+  <!-- publish robot description -->
+  <include file="$(find p2os_urdf)/launch/pioneer3dx_urdf.launch" />
+  
+  <!-- publish static transform tree -->
   <node pkg="tf" type="static_transform_publisher" name="stp_laser" output="screen" args="0.145 0.0 0.05 0 0 0 -1 base_link laser 100">
   </node>
 </launch>
-
