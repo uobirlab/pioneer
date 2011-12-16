@@ -1,0 +1,7 @@
+<launch>
+  <!--- Run AMCL -->
+  <!-- <include file="$(find amcl)/examples/amcl_diff.launch" /> -->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <param name="scan" value="base_scan"/>
+  </node>
+</launch>

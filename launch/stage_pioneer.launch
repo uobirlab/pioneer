@@ -1,0 +1,19 @@
+<launch>
+  <!-- <node pkg="stage" type="stageros" name="stage" args="$(find socspioneer)/meeting.world" respawn="false"/>  -->
+  <!-- Run stage headless -->
+  <node pkg="stage" type="stageros" name="stage" args="$(optenv ROS_STAGE_GRAPHICS -g) $(find socspioneer)/meeting.world" respawn="false"/>
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find socspioneer)/meeting.pgm 0.050000"/>
+
+  <!-- transform laser co-ordinates into robot-base co-ordinate frame -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="stp_laser" output="screen" args="0.135 0 0.202 0 0 0 base_link laser 100" /> -->
+
+  <!-- p2os_urdf launch -->
+  <include file="$(find p2os_urdf)/launch/upload_pioneer3dx.xml"/>
+  <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
+    <remap from="joint_state" to="joint_state"/>
+    <param name="publish_frequency" type="double" value="15.0"/>
+    <param name="tf_prefix" type="string" value=""/>
+  </node>
+</launch>
